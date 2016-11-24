@@ -1,0 +1,12 @@
+
+if [ -z "$1" ]; then
+    echo "Missing arguments"
+    echo "Usage: ${0} scan-path"
+    exit
+fi
+
+echo "deps $1"
+
+node_modules/google-closure-library/closure/bin/build/depswriter.py \
+    --root_with_prefix="$1 ../../../../$1" \
+    > $1/deps.js
